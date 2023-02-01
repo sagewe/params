@@ -8,5 +8,5 @@ class LearningRate(ConstrainedFloat):
     def dict(cls):
         return {"name": cls.__name__}
 
-def learning_rate():
+def learning_rate_param():
     return LearningRate

@@ -82,7 +82,7 @@ def get_string_chooice_validator(chooices):
     return string_chooice_validator
 
 
-def strchoice(chooice) -> Type[str]:
+def string_choice(chooice) -> Type[str]:
     namespace = dict(
         chooice=chooice,
     )
