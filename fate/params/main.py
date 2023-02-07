@@ -1,3 +1,5 @@
+import pydantic.schema
+
 from fate.params import (
     learning_rate_param,
     conint,
@@ -8,9 +10,10 @@ from fate.params import (
     CipherParamType,
     PaillierCipherParam,
     validate_arguments,
-    parse
+    parse,
+    jsonschema
 )
-from typing import Optional
+from typing import Dict, List, Optional, Union
 
 
 @validate_arguments
@@ -37,5 +40,13 @@ def lr(
     pass
 
 
+class A(pydantic.BaseModel):
+    p: optimizer_param()
+
+
 if __name__ == "__main__":
-    lr(tol=-1)
+    print(parse(optimizer_param(), "sgd") == "sgd")
+    print(jsonschema(conint(ge=10, lt=30)))
+    print(jsonschema(Union[List[int], Dict[int, int]]))
+    # lr(tol=-1)
+    print(jsonschema(optimizer_param()))
